@@ -2,6 +2,10 @@
 #include<fstream>
 using namespace std;  
 fstream file;
+//randonchange3
+//randonchange4
+//randonchange5
+//randonchange6
 //random changes removeedddd
 typedef enum {
 	UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
