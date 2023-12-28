@@ -22,6 +22,7 @@ public:
 };
 
 void tokenize() {
+	system("cls");
 	Token t;
 	char ch;
 
@@ -224,7 +225,7 @@ Token Token::Lexical_Analyzer(char c) {
 
 void regularexpression()
 {
-
+	system("cls");
 
 	ifstream file("regular_expression.txt");
 
@@ -299,9 +300,10 @@ void regularexpression()
 
 int main() {
 	char choice;
-	cout << "1. Tokenize" << endl;
-	cout << "2. Regex" << endl;
-	cout << "Enter your choice: ";
+	cout << "\t\t\t\t\tCOMPILER CONSTRUCTION" << endl;
+	cout << "\n\t\t\t1.Tokenize" << endl;
+	cout << "\n\t\t\t2.Regex" << endl;
+	cout << "\n\t\t\tEnter your choice: ";
 	cin >> choice;
 	if (choice == '1') {
 		tokenize();
