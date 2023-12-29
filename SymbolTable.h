@@ -203,7 +203,7 @@ token mylex(fstream& file) {
 			}
 
 			if (isKeyword(t.variable)) {
-				t.tt = KEYWORD;
+				t.tt = cn2::KEYWORD;
 				t.entryno = "Keyword";
 				break;
 			}
@@ -233,7 +233,7 @@ token mylex(fstream& file) {
 				t.variable += c;
 			}
 			str_dig.enqueue(t.variable);
-			t.tt = DIGIT;
+			t.tt = cn2::DIGIT;
 			t.entryno = "Digit";
 		}
 		else if (c == 'W')

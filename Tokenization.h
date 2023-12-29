@@ -44,7 +44,7 @@ namespace cn {
 	typedef enum {
 		UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
 		PLUS, INCREMENT, DECREMENT, EQUAL, DOUBLE_EQUAL, GREATER_THAN_EQUAL, LESS_THAN_EQUAL, PLUS_EQUAL, MINUS_EQUAL, MULTIPLY_EQUAL, DIVIDE_EQUAL, LESS_THAN,
-		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM
+		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM, KEYWORD, IDENTIFIER, DIGIT, END_OF_LINE
 
 	} tokenType;
 }
@@ -78,17 +78,18 @@ static void tokenize(string input_file) {
 			if (print || file.eof()) {
 				if (helping_string != "") {
 					if (is_keyword(helping_string)) {
-						cout << "IDENTIFIER" << "\t" << helping_string << endl;
+						cout << cn::KEYWORD << "\t" << "KEYWORD" << endl;
 					}
 					else if (is_identifier(helping_string)) {
-						cout << "IDENTIFIER" << "\t" << helping_string << endl;
+						cout << cn::IDENTIFIER << "\t" << "IDENTIFIER" << endl;
 					}
 					else if (is_digit(helping_string)) {
-						cout << "IDENTIFIER" << "\t" << helping_string << endl;
+						cout << cn::DIGIT << "\t" << "DIGIT" << endl;
 					}
 					else {
 						cout << "UNDEFINED" << "\t" << helping_string << endl;
 					}
+					helping_string = "";
 				}
 				if (!file.eof()) {
 					cout << t.tt << "\t" << t.entryOne << endl;
@@ -279,7 +280,7 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 	else if (c == '=') {
 		char temp;
 		file.get(temp);
-		if (c == '=') {
+		if (temp == '=') {
 			t.tt = tokenType::DOUBLE_EQUAL;
 			print = true;
 			t.entryOne = "DOUBLE EQUAL";
@@ -297,6 +298,12 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		t.tt = tokenType::SEMICOLON;
 		print = true;
 		t.entryOne = "SEMICOLON";
+		return t;
+	}
+	else if (c == '$') {
+		t.tt = tokenType::END_OF_LINE;
+		print = true;
+		t.entryOne = "END_OF_LINE";
 		return t;
 	}
 	else {
