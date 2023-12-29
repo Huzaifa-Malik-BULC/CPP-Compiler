@@ -23,7 +23,7 @@ bool is_keyword(string s) {
 bool is_identifier(string s) {
 	if (isalpha(s[0])) {
 		for (size_t i = 1; i < s.length(); i++) {
-			if (!isalpha(s[i]) && !isdigit(s[i] && s[i] != '_')) {
+			if (!isalpha(s[i]) && !isdigit(s[i]) && s[i] != '_') {
 				return false;
 			}
 		}
@@ -45,7 +45,8 @@ namespace cn {
 	typedef enum {
 		UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
 		PLUS, INCREMENT, DECREMENT, EQUAL, DOUBLE_EQUAL, GREATER_THAN_EQUAL, LESS_THAN_EQUAL, PLUS_EQUAL, MINUS_EQUAL, MULTIPLY_EQUAL, DIVIDE_EQUAL, LESS_THAN,
-		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM, KEYWORD, IDENTIFIER, DIGIT, END_OF_LINE, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT
+		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM, KEYWORD, IDENTIFIER, DIGIT, END_OF_LINE, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT, NEGATION, STRING,
+		NOT_EQUAL
 
 	} tokenType;
 }
@@ -332,6 +333,29 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		print = true;
 		t.entryOne = "END_OF_LINE";
 		return t;
+	}
+	else if (c == '\"') {
+				t.tt = tokenType::STRING;
+		print = true;
+		t.entryOne = "STRING";
+		return t;
+	}
+	else if (c == '!') {
+		char temp;
+		file.get(temp);
+		if (temp == '=') {
+			t.tt = tokenType::NOT_EQUAL;
+			print = true;
+			t.entryOne = "NOT EQUAL";
+			return t;
+		}
+		else {
+			t.tt = tokenType::NEGATION;
+			print = true;
+			t.entryOne = "NEGATION";
+			t.moveBack = true;
+			return t;
+		}
 	}
 	else {
 		helping_string += c;
