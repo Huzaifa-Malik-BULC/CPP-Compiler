@@ -22,6 +22,7 @@ int main() {
 	cout << "\n\t\t\t2.Single Statement Regex" << endl;
 	cout << "\n\t\t\t3.Multi-Statement Regex" << endl;
 	cout << "\n\t\t\t4.Three Address Code" << endl;
+	cout << "\n\t\t\t5.Statement Evaluation" << endl;
 	cout << "\n\t\t\tEnter your choice: ";
 	cin >> choice;
 	if (choice == '1') {
