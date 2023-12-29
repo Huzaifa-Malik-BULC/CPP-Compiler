@@ -1,9 +1,9 @@
 #include <fstream>
+#include <iostream>
 #include <regex>
 #include <sstream>
 #include <stdlib.h>
 #include <string>
-#include <iostream> // Never
 #include "MultiStatementRegex.h"
 #include "SingleStatementRegex.h"
 #include "Tokenization.h"
