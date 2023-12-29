@@ -2,68 +2,37 @@
 #include <iostream>
 #include <fstream>
 #include <cctype>
-#include <string>
+#include<string>
 using namespace std;
 
-class RecursiveDescentParser {
-    std::string input;
+struct RecursiveDescentParser {
+    string input;
     size_t index;
-    bool num_found;
+
+    RecursiveDescentParser(string& input) : input(input), index(0) {}
 
     bool parseExp();
     bool parseTerm();
     bool parseOp();
-
-public:
-    RecursiveDescentParser(const std::string&);
     bool parse();
 };
 
-int RecursiveParse(string input_file) {
-    ifstream file(input_file);
-    if (!file.is_open()) {
-        cerr << "Error while opening file." << endl;
-        return 1;
-    }
-
-    string input;
-    std::getline(file, input);
-
-    RecursiveDescentParser parser(input);
-
-    if (parser.parse()) {
-        cout << "Input is accepted." << endl;
-    }
-    else {
-        cout << "Input is not accepted." << endl;
-    }
-
-    file.close();
-    return 0;
-}
-
-RecursiveDescentParser::RecursiveDescentParser(const std::string& expr) : input(expr), index(0), num_found(false) {}
-
 bool RecursiveDescentParser::parseExp() {
     if (parseTerm()) {
-        if (input[index] != '\0') {
-            while (input.size() != index) {
-                if (parseOp()) {
-                    parseExp();
-                }
-                else return false;
-            }
+        while (parseOp() && parseTerm()) {
+
         }
-        else return true;
+        return true;
     }
-    else return false;
+    return false;
 }
 
 bool RecursiveDescentParser::parseTerm() {
-    if (std::isdigit(input[index])) {
-        ++index;
-        num_found = true;
-        return parseTerm();
+    if (isdigit(input[index])) {
+        while (isdigit(input[++index])) {
+
+        }
+        return true;
     }
     else if (input[index] == '(') {
         ++index;
@@ -72,13 +41,9 @@ bool RecursiveDescentParser::parseTerm() {
             return true;
         }
     }
-
-    if (!num_found) return false;
-    else {
-        num_found = false;
-        return true;
-    }
+    return false;
 }
+
 
 bool RecursiveDescentParser::parseOp() {
     if (input[index] == '+' || input[index] == '-' || input[index] == '*') {
@@ -91,3 +56,35 @@ bool RecursiveDescentParser::parseOp() {
 bool RecursiveDescentParser::parse() {
     return parseExp() && index == input.size();
 }
+
+
+
+int RecursiveParse(string input_file) {
+    ifstream inputFile(input_file);
+    if (!inputFile.is_open()) {
+        cerr << "Error cannot open file\n";
+        return 1;
+    }
+
+
+    while (!inputFile.eof()) {
+        string inputExpression;
+        getline(inputFile, inputExpression);
+
+
+        if (!inputExpression.empty()) {
+            RecursiveDescentParser parser(inputExpression);
+
+            if (parser.parse()) {
+                cout << "Grammar is valid: " << inputExpression << "\n";
+            }
+            else {
+                cout << "Grammar is invalid: " << inputExpression << "\n";
+            }
+        }
+    }
+
+    inputFile.close();
+
+}
+
