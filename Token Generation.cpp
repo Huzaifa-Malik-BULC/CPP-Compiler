@@ -40,6 +40,8 @@ void tokenize() {
 	}
 }
 
+// Here I have changed something
+
 Token Token::Lexical_Analyzer(char c) {
 	Token t;
 
