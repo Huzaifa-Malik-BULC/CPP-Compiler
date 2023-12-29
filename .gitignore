@@ -362,7 +362,3 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 code.txt
-Compiler Construction Project.sln
-Compiler Construction Project.vcxproj
-Compiler Construction Project.vcxproj.filters
-Compiler Construction Project.vcxproj.user

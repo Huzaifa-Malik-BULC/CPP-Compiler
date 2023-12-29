@@ -217,6 +217,28 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		return t;
 	}
 	else {
+		helping_string += ch;
+		if () {
+			t.tt = KEYWORD;
+			t.entryOne = helping_string;
+			return t;
+		}
+		else if () {
+			t.tt = IDENTIFIER;
+			t.entryOne = helping_string;
+			return t;
+		}
+		else if () {
+			t.tt = DIGIT;
+			t.entryOne = helping_string;
+			return t;
+
+		}
+		else {
+			t.tt = UNDEFINED;
+			t.entryOne = helping_string;
+			return t;
+		}
 		t.tt = UNDEFINED;
 		t.entryOne = "UNDEFINED";
 		return t;
