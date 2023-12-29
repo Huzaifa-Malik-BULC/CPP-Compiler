@@ -353,7 +353,7 @@ token mylex(fstream& file) {
 
 int SymbolTable(string input_file) {
 	token t1;
-	lexicalfile.open("input.txt");
+	lexicalfile.open(input_file);
 
 	if (!lexicalfile.is_open()) {
 		cout << "Failed to open file." << endl;
