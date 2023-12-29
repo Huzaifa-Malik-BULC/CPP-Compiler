@@ -11,6 +11,7 @@
 #include "Tokenization.h"
 #include "StatementEvaluation.h"
 #include "SymbolTable.h"
+#include "RecursiveParsing.h"
 using namespace std;
 
 string input_file = "code.txt";
@@ -25,6 +26,7 @@ int main() {
 	cout << "\n\t\t\t4.Three Address Code" << endl;
 	cout << "\n\t\t\t5.Statement Evaluation" << endl;
 	cout << "\n\t\t\t6.Symbol Table" << endl;
+	cout << "\n\t\t\t7.Recursive Parsing" << endl;
 	cout << "\n\t\t\tEnter your choice: ";
 	cin >> choice;
 	if (choice == '1') {
@@ -44,7 +46,11 @@ int main() {
 	}
 	else if (choice == '6') {
 		SymbolTable(input_file);
-	}	
+	}
+	else if (choice == '7')
+	{
+		RecursiveParse(input_file);
+	}
 	else {
 		cout << "Invalid choice" << endl;
 	}

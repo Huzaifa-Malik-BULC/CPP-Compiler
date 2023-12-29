@@ -348,7 +348,7 @@ token mylex(fstream& file) {
 	return t;
 }
 
-void SymbolTable(string input_file) {
+int SymbolTable(string input_file) {
 	token t1;
 	lexicalfile.open("input.txt");
 

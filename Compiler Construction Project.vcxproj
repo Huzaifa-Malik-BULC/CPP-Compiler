@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MultiStatementRegex.h" />
+    <ClInclude Include="RecursiveParsing.h" />
     <ClInclude Include="SingleStatementRegex.h" />
     <ClInclude Include="StatementEvaluation.h" />
     <ClInclude Include="SymbolTable.h" />
