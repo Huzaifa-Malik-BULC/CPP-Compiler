@@ -8,10 +8,11 @@ bool is_keyword(string s) {
 	vector<string> keywords = { "auto", "break", "case", "char", "const", "continue", "default", "do",
 			"double", "else", "enum", "extern", "float", "for", "goto", "if",
 			"int", "long", "register", "return", "short", "signed", "sizeof", "static",
-			"struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "main", "cout", "cin"
-		, "endl", "include", "namespace"
+			"struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "main", "cout", "cin",
+			"endl", "include", "namespace", "fstream", "using", "std", "string", "bool", "true", "false", "return",
+			"istream", "ostream", "ifstream", "ofstream"
 	};
-	for (int i = 0; i < 32; i++) {
+	for (int i = 0; i < keywords.size(); i++) {
 		if (s == keywords[i]) {
 			return true;
 		}
@@ -22,7 +23,7 @@ bool is_keyword(string s) {
 bool is_identifier(string s) {
 	if (isalpha(s[0])) {
 		for (size_t i = 1; i < s.length(); i++) {
-			if (!isalpha(s[i]) && !isdigit(s[i])) {
+			if (!isalpha(s[i]) && !isdigit(s[i] && s[i] != '_')) {
 				return false;
 			}
 		}
@@ -44,7 +45,7 @@ namespace cn {
 	typedef enum {
 		UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
 		PLUS, INCREMENT, DECREMENT, EQUAL, DOUBLE_EQUAL, GREATER_THAN_EQUAL, LESS_THAN_EQUAL, PLUS_EQUAL, MINUS_EQUAL, MULTIPLY_EQUAL, DIVIDE_EQUAL, LESS_THAN,
-		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM, KEYWORD, IDENTIFIER, DIGIT, END_OF_LINE
+		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM, KEYWORD, IDENTIFIER, DIGIT, END_OF_LINE, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT
 
 	} tokenType;
 }
@@ -249,6 +250,32 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		if (temp == '=') {
 			t.tt = tokenType::DIVIDE_EQUAL;
 			t.entryOne = "DIVIDE EQUAL";
+			print = true;
+			return t;
+		}
+		else if (temp == '/') {
+			t.tt = tokenType::SINGLE_LINE_COMMENT;
+			t.entryOne = "SINGLE LINE COMMENT";
+			while (temp != '\n') {
+				file.get(temp);
+				t.moveBack = true;
+			}
+			print = true;
+			return t;
+		}
+		else if (temp == '*') {
+			t.tt = tokenType::MULTI_LINE_COMMENT;
+			t.entryOne = "MULTI LINE COMMENT";
+			while (temp != '\n') {
+				file.get(temp);
+				if (temp == '*') {
+					file.get(temp);
+					if (temp == '/') {
+						t.moveBack = true;
+						break;
+					}
+				}
+			}
 			print = true;
 			return t;
 		}
