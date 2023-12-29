@@ -1,6 +1,0 @@
-if (x == y) {
-    goto label;
-}
-
-
-
