@@ -40,12 +40,15 @@ bool is_digit(string s) {
 	return true;
 }
 
-typedef enum {
-	UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
-	PLUS, INCREMENT, DECREMENT, EQUAL, DOUBLE_EQUAL, GREATER_THAN_EQUAL, LESS_THAN_EQUAL, PLUS_EQUAL, MINUS_EQUAL, MULTIPLY_EQUAL, DIVIDE_EQUAL, LESS_THAN,
-	GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM
+namespace cn {
+	typedef enum {
+		UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
+		PLUS, INCREMENT, DECREMENT, EQUAL, DOUBLE_EQUAL, GREATER_THAN_EQUAL, LESS_THAN_EQUAL, PLUS_EQUAL, MINUS_EQUAL, MULTIPLY_EQUAL, DIVIDE_EQUAL, LESS_THAN,
+		GREATER_THAN, DIVIDE, MULTIPLY, OUTPUT_STREAM, INPUT_STREAM
 
-} tokenType;
+	} tokenType;
+}
+using namespace cn;
 bool print = true;
 class Token {
 public:
@@ -99,49 +102,49 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 	Token t;
 
 	if (c == ' ') {
-		t.tt = SPACE;
+		t.tt = tokenType::SPACE;
 		t.entryOne = "SPACE";
 		print = true;
 		return t;
 	}
 	else if (c == '\t') {
-		t.tt = TAB;
+		t.tt = tokenType::TAB;
 		t.entryOne = "TAB";
 		print = true;
 		return t;
 	}
 	else if (c == '\n') {
-		t.tt = NEWLINE;
+		t.tt = tokenType::NEWLINE;
 		t.entryOne = "NEWLINE";
 		print = true;
 		return t;
 	}
 	else if (c == '(') {
-		t.tt = LEFT_PARANTHESIS;
+		t.tt = tokenType::LEFT_PARANTHESIS;
 		t.entryOne = "LEFT PARENTHESIS";
 		print = true;
 		return t;
 	}
 	else if (c == ')') {
-		t.tt = RIGHT_PARANTHESIS;
+		t.tt = tokenType::RIGHT_PARANTHESIS;
 		t.entryOne = "RIGHT PARENTHESIS";
 		print = true;
 		return t;
 	}
 	else if (c == '{') {
-		t.tt = LEFT_BRACKET;
+		t.tt = tokenType::LEFT_BRACKET;
 		t.entryOne = "LEFT BRACKET";
 		print = true;
 		return t;
 	}
 	else if (c == '}') {
-		t.tt = RIGHT_BRACKET;
+		t.tt = tokenType::RIGHT_BRACKET;
 		t.entryOne = "RIGHT BRACKET";
 		print = true;
 		return t;
 	}
 	else if (c == ',') {
-		t.tt = COMMA;
+		t.tt = tokenType::COMMA;
 		t.entryOne = "COMMA";
 		print = true;
 		return t;
@@ -150,20 +153,20 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (temp == '+') {
-			t.tt = INCREMENT;
+			t.tt = tokenType::INCREMENT;
 			t.entryOne = "INCREMENT";
 			print = true;
 			print = true;
 			return t;
 		}
 		else if (temp == '=') {
-			t.tt = PLUS_EQUAL;
+			t.tt = tokenType::PLUS_EQUAL;
 			t.entryOne = "PLUS EQUAL";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = PLUS;
+			t.tt = tokenType::PLUS;
 			t.entryOne = "PLUS";
 			print = true;
 			t.moveBack = true;
@@ -174,19 +177,19 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (temp == '-') {
-			t.tt = DECREMENT;
+			t.tt = tokenType::DECREMENT;
 			t.entryOne = "DECREMENT";
 			print = true;
 			return t;
 		}
 		else if (temp == '=') {
-			t.tt = MINUS_EQUAL;
+			t.tt = tokenType::MINUS_EQUAL;
 			t.entryOne = "MINUS EQUAL";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = MINUS;
+			t.tt = tokenType::MINUS;
 			print = true;
 			t.entryOne = "MINUS";
 			t.moveBack = true;
@@ -197,19 +200,19 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (temp == '=') {
-			t.tt = LESS_THAN_EQUAL;
+			t.tt = tokenType::LESS_THAN_EQUAL;
 			t.entryOne = "LESS THAN EQUAL";
 			print = true;
 			return t;
 		}
 		else if (temp == '<') {
-			t.tt = OUTPUT_STREAM;
+			t.tt = tokenType::OUTPUT_STREAM;
 			t.entryOne = "OUTPUT STREAM";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = LESS_THAN;
+			t.tt = tokenType::LESS_THAN;
 			t.entryOne = "LESS THAN";
 			print = true;
 			t.moveBack = true;
@@ -220,19 +223,19 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (temp == '=') {
-			t.tt = GREATER_THAN_EQUAL;
+			t.tt = tokenType::GREATER_THAN_EQUAL;
 			t.entryOne = "GREATER THAN EQUAL";
 			print = true;
 			return t;
 		}
 		else if (temp == '>') {
-			t.tt = INPUT_STREAM;
+			t.tt = tokenType::INPUT_STREAM;
 			t.entryOne = "INPUT STREAM";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = GREATER_THAN;
+			t.tt = tokenType::GREATER_THAN;
 			t.entryOne = "GREATER THAN";
 			print = true;
 			t.moveBack = true;
@@ -243,13 +246,13 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (temp == '=') {
-			t.tt = DIVIDE_EQUAL;
+			t.tt = tokenType::DIVIDE_EQUAL;
 			t.entryOne = "DIVIDE EQUAL";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = DIVIDE;
+			t.tt = tokenType::DIVIDE;
 			t.entryOne = "DIVIDE";
 			print = true;
 			t.moveBack = true;
@@ -260,13 +263,13 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (c == '=') {
-			t.tt = MULTIPLY_EQUAL;
+			t.tt = tokenType::MULTIPLY_EQUAL;
 			t.entryOne = "MULTIPLY EQUAL";
 			print = true;
 			return t;
 		}
 		else {
-			t.tt = MULTIPLY;
+			t.tt = tokenType::MULTIPLY;
 			t.entryOne = "MULTIPLY";
 			print = true;
 			t.moveBack = true;
@@ -277,13 +280,13 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		char temp;
 		file.get(temp);
 		if (c == '=') {
-			t.tt = DOUBLE_EQUAL;
+			t.tt = tokenType::DOUBLE_EQUAL;
 			print = true;
 			t.entryOne = "DOUBLE EQUAL";
 			return t;
 		}
 		else {
-			t.tt = EQUAL;
+			t.tt = tokenType::EQUAL;
 			print = true;
 			t.entryOne = "EQUAL";
 			t.moveBack = true;
@@ -291,7 +294,7 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		}
 	}
 	else if (c == ';') {
-		t.tt = SEMICOLON;
+		t.tt = tokenType::SEMICOLON;
 		print = true;
 		t.entryOne = "SEMICOLON";
 		return t;
@@ -299,7 +302,7 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 	else {
 		helping_string += c;
 		print = false;
-		t.tt = UNDEFINED;
+		t.tt = tokenType::UNDEFINED;
 		t.entryOne = "UNDEFINED";
 		return t;
 	}

@@ -7,10 +7,13 @@
 #include <vector>
 using namespace std;
 
-typedef enum {
-	SPACE = 1, TAB, NEWLINE, SEMICOLON, EQUALTO, KEYWORD, UID, DIGIT, GEN_SYMBOL, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT, WHILE, PARENTHISIS, BRACKETS,
-	PLUS, EQUAL, MINUS, MULT, SLASH, PLUSPLUS, MINUSMINUS, EQUALEQUAL, PLUSEQUAL, MINUSEQUAL, LESSQUAL, GREATEREQUAL, LESSGREATER, stringdata
-} tokentype;
+namespace cn2 {
+	typedef enum {
+		SPACE = 1, TAB, NEWLINE, SEMICOLON, EQUALTO, KEYWORD, UID, DIGIT, GEN_SYMBOL, SINGLE_LINE_COMMENT, MULTI_LINE_COMMENT, WHILE, PARENTHISIS, BRACKETS,
+		PLUS, EQUAL, MINUS, MULT, SLASH, PLUSPLUS, MINUSMINUS, EQUALEQUAL, PLUSEQUAL, MINUSEQUAL, LESSQUAL, GREATEREQUAL, LESSGREATER, stringdata
+	} tokentype;
+}
+using namespace cn2;
 
 fstream lexicalfile;
 struct Node {
@@ -166,7 +169,7 @@ token mylex(fstream& file) {
 		}
 
 		if (c == ' ') {
-			t.tt = SPACE;
+			t.tt = cn2::SPACE;
 			t.entryno = "SPACE";
 		}
 		else if (c == '/' && next == '/') {
@@ -188,7 +191,7 @@ token mylex(fstream& file) {
 			}
 		}
 		else if (c == '\n') {
-			t.tt = NEWLINE;
+			t.tt = cn2::NEWLINE;
 			t.entryno = "Newline";
 		}
 		else if (isalpha(c) || c == '_') {
@@ -258,7 +261,7 @@ token mylex(fstream& file) {
 		}
 		else if (c == ';')
 		{
-			t.tt = SEMICOLON;
+			t.tt = cn2::SEMICOLON;
 			t.entryno = "SEMICOLON";
 			return t;
 		}
@@ -272,13 +275,13 @@ token mylex(fstream& file) {
 			}
 			else if (next == '=')
 			{
-				t.tt = PLUSEQUAL;
+				t.tt = cn2::PLUSEQUAL;
 				t.entryno = "PLUSEQUAL";
 				t.variable = "+=";
 			}
 			else
 			{
-				t.tt = PLUS;
+				t.tt = cn2::PLUS;
 				t.entryno = "PLUS";
 			}
 		}
@@ -298,7 +301,7 @@ token mylex(fstream& file) {
 			}
 			else
 			{
-				t.tt = MINUS;
+				t.tt = cn2::MINUS;
 				t.entryno = "MINUS";
 			}
 		}
@@ -312,7 +315,7 @@ token mylex(fstream& file) {
 			}
 			else
 			{
-				t.tt = EQUAL;
+				t.tt = cn2::EQUAL;
 				t.entryno = "EQUAL";
 			}
 		}
@@ -326,7 +329,7 @@ token mylex(fstream& file) {
 			}
 			else if (next == '>')
 			{
-				t.tt = LESSGREATER;
+				t.tt = cn2::LESSGREATER;
 				t.entryno = "LESSGREATER";
 				t.variable = "<>";
 			}
@@ -335,13 +338,13 @@ token mylex(fstream& file) {
 		{
 			if (next == '=')
 			{
-				t.tt = GREATEREQUAL;
+				t.tt = cn2::GREATEREQUAL;
 				t.entryno = "GREATEREQUAL";
 				t.variable = ">=";
 			}
 		}
 
-		if (t.tt != SPACE) {
+		if (t.tt != cn2::SPACE) {
 			break;
 		}
 	}
