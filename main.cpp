@@ -62,6 +62,6 @@ int main() {
 		syntaxAnalysisAndTreeExpression(input_file);
 	}
 	else {
-		cout << "Invalid choice" << endl;
+		exit(0);
 	}
 }

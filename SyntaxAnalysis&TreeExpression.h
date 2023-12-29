@@ -5,18 +5,21 @@
 #include <sstream>
 using namespace std;
 
-enum class TokenType {
-    NUMBER, ID, ADDOPR, MULOPR, LPAREN, RPAREN, ASSIGN, SEMICOLON, END
-};
+namespace cn3 {
+    enum class TokenType {
+        NUMBER, ID, ADDOPR, MULOPR, LPAREN, RPAREN, ASSIGN, SEMICOLON, END
+    };
 
-struct Token {
-    TokenType type;
-    string value;
-};
+    struct Token {
+        TokenType type;
+        string value;
+    };
+}
+using namespace cn3;
 
 class Parser {
     istringstream input;
-    Token token;
+    cn3::Token token;
     string output;
 
     void nextToken() {
