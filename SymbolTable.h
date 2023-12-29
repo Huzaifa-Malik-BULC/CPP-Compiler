@@ -173,14 +173,14 @@ token mylex(fstream& file) {
 			t.entryno = "SPACE";
 		}
 		else if (c == '/' && next == '/') {
-			t.tt = SINGLE_LINE_COMMENT;
+			t.tt = cn2::SINGLE_LINE_COMMENT;
 			t.entryno = "Single Line Comments";
 			while (c != '\n') {
 				file.get(c);
 			}
 		}
 		else if (c == '/' && next == '*') {
-			t.tt = MULTI_LINE_COMMENT;
+			t.tt = cn2::MULTI_LINE_COMMENT;
 			t.entryno = "Multiline Comments";
 			while (true) {
 				file.get(c);
