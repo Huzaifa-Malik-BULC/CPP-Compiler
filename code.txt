@@ -1,2 +1,8 @@
 if(a==b)
 goto c;
+
+$
+
+goto a;$
+a=b;
+$

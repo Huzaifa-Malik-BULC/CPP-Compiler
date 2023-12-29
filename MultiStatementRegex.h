@@ -68,9 +68,8 @@ void multiLineRegularExpression(string input_file) {
 					cout << "Valid Pointer Declaration" << endl;
 				}
 				else {
-					cout << "Syntax Error" << endl;
+					cout << "Syntax Error: Statement: " << ch << endl;
 				}
-
 				code = "";
 			}
 			else {
