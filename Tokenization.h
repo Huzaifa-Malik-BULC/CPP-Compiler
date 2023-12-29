@@ -3,7 +3,7 @@
 #include<iostream>
 using namespace std;
 
-
+string helping_string = "";	
 
 typedef enum {
 	UNDEFINED = 0, SPACE = 1, TAB, NEWLINE, DO, FOR, LEFT_PARANTHESIS, RIGHT_PARANTHESIS, COMMA, SEMICOLON, LEFT_BRACKET, RIGHT_BRACKET, MINUS,
