@@ -44,9 +44,8 @@ bool RecursiveDescentParser::parseTerm() {
     return false;
 }
 
-
 bool RecursiveDescentParser::parseOp() {
-    if (input[index] == '+' || input[index] == '-' || input[index] == '*') {
+    if (input[index] == '+' || input[index] == '-' || input[index] == '*' || input[index] == '/' || input[index] == '%' || input[index] == '^') {
         ++index;
         return true;
     }
@@ -56,8 +55,6 @@ bool RecursiveDescentParser::parseOp() {
 bool RecursiveDescentParser::parse() {
     return parseExp() && index == input.size();
 }
-
-
 
 int RecursiveParse(string input_file) {
     ifstream inputFile(input_file);
@@ -87,4 +84,3 @@ int RecursiveParse(string input_file) {
     inputFile.close();
 
 }
-
