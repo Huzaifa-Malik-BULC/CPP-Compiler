@@ -1,5 +1,5 @@
 #include <fstream>
-#include <iostream>
+#include <iostream> //hello
 #include <regex>
 #include <sstream>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 #include "Tokenization.h"
 #include "ThreeAddressCode.h"
 #include "Tokenization.h"
+#include "StatementEvaluation.h"
 using namespace std;
 
 string input_file = "code.txt";
@@ -21,6 +22,7 @@ int main() {
 	cout << "\n\t\t\t2.Single Statement Regex" << endl;
 	cout << "\n\t\t\t3.Multi-Statement Regex" << endl;
 	cout << "\n\t\t\t4.Three Address Code" << endl;
+	cout << "\n\t\t\t5.Statement Evaluation" << endl;
 	cout << "\n\t\t\tEnter your choice: ";
 	cin >> choice;
 	if (choice == '1') {
@@ -34,6 +36,9 @@ int main() {
 	}
 	else if (choice == '4') {
 		threeAddressCode(input_file, output_file);
+	}
+	else if (choice == '5') {
+		StatementEvaluation(input_file);
 	}
 	else {
 		cout << "Invalid choice" << endl;
