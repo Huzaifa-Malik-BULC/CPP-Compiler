@@ -1,0 +1,2 @@
+t1=c;$goto
+if(a==b)=t2

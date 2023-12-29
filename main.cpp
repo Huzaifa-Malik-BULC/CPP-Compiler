@@ -9,6 +9,7 @@
 #include "Tokenization.h"
 #include "ThreeAddressCode.h"
 #include "Tokenization.h"
+#include "StatementEvaluation.h"
 using namespace std;
 
 string input_file = "code.txt";
@@ -34,6 +35,9 @@ int main() {
 	}
 	else if (choice == '4') {
 		threeAddressCode(input_file, output_file);
+	}
+	else if (choice == '5') {
+		StatementEvaluation(input_file);
 	}
 	else {
 		cout << "Invalid choice" << endl;
