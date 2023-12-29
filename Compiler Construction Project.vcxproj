@@ -135,6 +135,7 @@
     <ClInclude Include="SingleStatementRegex.h" />
     <ClInclude Include="StatementEvaluation.h" />
     <ClInclude Include="SymbolTable.h" />
+    <ClInclude Include="SyntaxAnalysis.h" />
     <ClInclude Include="ThreeAddressCode.h" />
     <ClInclude Include="Tokenization.h" />
   </ItemGroup>
