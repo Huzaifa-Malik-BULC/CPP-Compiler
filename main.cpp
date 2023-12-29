@@ -20,6 +20,9 @@ string input_file = "code.txt";
 string output_file = "output.txt";
 
 int main() {
+restart:
+	system("cls");
+
 	char choice;
 	cout << "\t\t\t\t\tCOMPILER CONSTRUCTION" << endl;
 	cout << "\n\t\t\t1. Tokenize" << endl;
@@ -64,4 +67,8 @@ int main() {
 	else {
 		exit(0);
 	}
+
+	cout << "\n\nPress Enter to continue... ";
+	system("pause>0");
+	goto restart;
 }

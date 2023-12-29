@@ -335,10 +335,24 @@ Token Token::Lexical_Analyzer(char c, ifstream& file) {
 		return t;
 	}
 	else if (c == '\"') {
-				t.tt = tokenType::STRING;
+		t.tt = tokenType::STRING;
 		print = true;
-		t.entryOne = "STRING";
-		return t;
+		file.get(c);
+		while (c != '\"') {
+			file.get(c);
+			if (file.eof()) {
+				break;
+			}
+		}
+		if (c == '\"') {
+			t.entryOne = "STRING";
+			return t;
+		}
+		else {
+			t.tt = tokenType::UNDEFINED;
+			t.entryOne = "UNDEFINED";
+			return t;
+		}
 	}
 	else if (c == '!') {
 		char temp;
