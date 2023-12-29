@@ -8,15 +8,17 @@ using namespace std;
 struct RecursiveDescentParser {
     string input;
     size_t index;
+    int openParenCount;
+    int closeParenCount;
 
-    RecursiveDescentParser(string& input) : input(input), index(0) {}
+    RecursiveDescentParser(string& input) : input(input), index(0), openParenCount(0), closeParenCount(0) {}
 
     bool parseExp();
     bool parseTerm();
     bool parseOp();
     bool parse();
+    bool bracketsBalanced();
 };
-
 bool RecursiveDescentParser::parseExp() {
     if (parseTerm()) {
         while (parseOp() && parseTerm()) {
@@ -35,8 +37,10 @@ bool RecursiveDescentParser::parseTerm() {
         return true;
     }
     else if (input[index] == '(') {
+        ++openParenCount;
         ++index;
         if (parseExp() && input[index] == ')') {
+            ++closeParenCount;
             ++index;
             return true;
         }
@@ -53,7 +57,11 @@ bool RecursiveDescentParser::parseOp() {
 }
 
 bool RecursiveDescentParser::parse() {
-    return parseExp() && index == input.size();
+    return parseExp() && index == input.size() && bracketsBalanced();
+}
+
+inline bool RecursiveDescentParser::bracketsBalanced() {
+    return (openParenCount == closeParenCount);
 }
 
 int RecursiveParse(string input_file) {
