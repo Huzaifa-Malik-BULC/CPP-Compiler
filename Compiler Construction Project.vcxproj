@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -116,7 +116,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -128,7 +128,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Token Generation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MultiStatementRegex.h" />
+    <ClInclude Include="RecursiveParsing.h" />
+    <ClInclude Include="SingleStatementRegex.h" />
+    <ClInclude Include="StatementEvaluation.h" />
+    <ClInclude Include="SymbolTable.h" />
+    <ClInclude Include="SyntaxAnalysis&amp;TreeExpression.h" />
+    <ClInclude Include="SyntaxAnalysis.h" />
+    <ClInclude Include="ThreeAddressCode.h" />
+    <ClInclude Include="Tokenization.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="code.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
