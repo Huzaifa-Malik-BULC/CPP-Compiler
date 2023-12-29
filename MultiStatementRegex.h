@@ -31,44 +31,46 @@ void multiLineRegularExpression(string input_file) {
 		while (!file.eof()) {
 			file.get(ch);
 			if (ch == '$') {
-				if (regex_match(code, regex_assignment)) {
-					cout << "Valid Assignment Expression" << endl;
-				}
-				else if (regex_match(code, regex_conditional_jump)) {
-					cout << "Valid Conditional Statment" << endl;
-				}
-				else if (regex_match(code, regex_procedure)) {
-					cout << "Valid Procedure Call" << endl;
-				}
-				else if (regex_match(code, regex_copy)) {
-					cout << "Valid Copy Statment" << endl;
-				}
-				else if (regex_match(code, regex_unconditonal_jump)) {
-					cout << "Valid Unconditional Statment" << endl;
-				}
-				else if (regex_match(code, regex_for)) {
-					cout << "Valid For Loop" << endl;
-				}
-				else if (regex_match(code, regex_while)) {
-					cout << "Valid While Loop" << endl;
-				}
-				else if (regex_match(code, regex_do_while)) {
-					cout << "Valid Do While Loop" << endl;
-				}
-				else if (regex_match(code, regex_switch)) {
-					cout << "Valid Switch Statment" << endl;
-				}
-				else if (regex_match(code, regex_function)) {
-					cout << "Valid Function Declaration" << endl;
-				}
-				else if (regex_match(code, regex_array)) {
-					cout << "Valid Array Declaration" << endl;
-				}
-				else if (regex_match(code, regex_pointer)) {
-					cout << "Valid Pointer Declaration" << endl;
-				}
-				else {
-					cout << "Syntax Error: Statement: " << ch << endl;
+				if (code != "" && code != " ") {
+					if (regex_match(code, regex_assignment)) {
+						cout << "Valid Assignment Expression" << endl;
+					}
+					else if (regex_match(code, regex_conditional_jump)) {
+						cout << "Valid Conditional Statment" << endl;
+					}
+					else if (regex_match(code, regex_procedure)) {
+						cout << "Valid Procedure Call" << endl;
+					}
+					else if (regex_match(code, regex_copy)) {
+						cout << "Valid Copy Statment" << endl;
+					}
+					else if (regex_match(code, regex_unconditonal_jump)) {
+						cout << "Valid Unconditional Statment" << endl;
+					}
+					else if (regex_match(code, regex_for)) {
+						cout << "Valid For Loop" << endl;
+					}
+					else if (regex_match(code, regex_while)) {
+						cout << "Valid While Loop" << endl;
+					}
+					else if (regex_match(code, regex_do_while)) {
+						cout << "Valid Do While Loop" << endl;
+					}
+					else if (regex_match(code, regex_switch)) {
+						cout << "Valid Switch Statment" << endl;
+					}
+					else if (regex_match(code, regex_function)) {
+						cout << "Valid Function Declaration" << endl;
+					}
+					else if (regex_match(code, regex_array)) {
+						cout << "Valid Array Declaration" << endl;
+					}
+					else if (regex_match(code, regex_pointer)) {
+						cout << "Valid Pointer Declaration" << endl;
+					}
+					else {
+						cout << "Syntax Error: Statement: " << ch << endl;
+					}
 				}
 				code = "";
 			}
